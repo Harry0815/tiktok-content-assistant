@@ -1,23 +1,18 @@
-import Fastify from 'fastify';
-import { app } from './app/app';
+import "dotenv/config";
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { RequestIdMiddleware } from "./common/request-id.middleware";
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
 
-// Instantiate Fastify with some config
-const server = Fastify({
-  logger: true,
-});
+  // RequestId header + basic CORS
+  app.use(new RequestIdMiddleware().use);
+  app.enableCors({ origin: true, credentials: true });
 
-// Register your application as a normal plugin.
-server.register(app);
-
-// Start listening.
-server.listen({ port, host }, (err) => {
-  if (err) {
-    server.log.error(err);
-    process.exit(1);
-  } else {
-    console.log(`[ ready ] http://${host}:${port}`);
-  }
-});
+  const port = Number(process.env.PORT ?? 3000);
+  await app.listen(port);
+  // eslint-disable-next-line no-console
+  console.log(`Backend listening on http://localhost:${port}`);
+}
+bootstrap();
