@@ -1,0 +1,63 @@
+{
+  "name": "tiktok-content-assistant",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tiktok-content-assistant/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/tiktok-content-assistant",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/tiktok-content-assistant/src/main.ts",
+        "tsConfig": "apps/tiktok-content-assistant/tsconfig.app.json",
+        "assets": ["apps/tiktok-content-assistant/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generateLockfile": true,
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "tiktok-content-assistant:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tiktok-content-assistant:build:development"
+        },
+        "production": {
+          "buildTarget": "tiktok-content-assistant:build:production"
+        }
+      }
+    },
+    "docker-build": {
+      "dependsOn": ["build"],
+      "command": "docker build -f apps/tiktok-content-assistant/Dockerfile . -t tiktok-content-assistant"
+    }
+  }
+}
