@@ -2,7 +2,18 @@
   "name": "tiktok-content-assistant",
   "version": "0.0.1",
   "license": "MIT",
-  "scripts": {},
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm --workspace apps/backend run start:dev",
+    "dev:frontend": "npm --workspace apps/frontend run start",
+    "db:up": "docker-compose up -d",
+    "drizzle:generate": "drizzle-kit generate",
+    "drizzle:migrate": "drizzle-kit migrate",
+    "drizzle:push": "drizzle-kit push"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "19.2.17",
