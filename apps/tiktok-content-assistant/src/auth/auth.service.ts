@@ -3,7 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import { eq } from "drizzle-orm";
 import * as bcrypt from "bcrypt";
 import { DB } from "../db/db.module";
-import { users } from "@tca/shared";
+import { users } from "@tca-shared";
 
 @Injectable()
 export class AuthService {

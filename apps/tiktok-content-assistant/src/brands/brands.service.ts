@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { DB } from "../db/db.module";
-import { brands } from "@tca/shared";
+import { brands } from "@tca-shared";
 import { nanoid } from "nanoid";
 import type { CreateBrandDto } from "./brands.dto";
 

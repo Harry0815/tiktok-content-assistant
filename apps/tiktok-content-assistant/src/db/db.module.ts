@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
-import * as schema from "@tca/shared";
+import * as schema from "@tca-shared";
 
 export const DB = Symbol("DB");
 

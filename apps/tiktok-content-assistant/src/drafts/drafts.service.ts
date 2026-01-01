@@ -1,11 +1,11 @@
 import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { DB } from "../db/db.module";
-import { brands, drafts, generations, draftVersions } from "@tca/shared";
+import { brands, drafts, generations, draftVersions } from "@tca-shared";
 import { nanoid } from "nanoid";
 import { eq, desc, max } from "drizzle-orm";
 import { OpenAiService } from "../openai/openai.service";
 import { SYSTEM_JSON_RULES, ideasPrompt, fullDraftPrompt, refinePrompt } from "../openai/prompts";
-import { IdeasListSchema, FullDraftSchema } from "@tca/shared";
+import { IdeasListSchema, FullDraftSchema } from "@tca-shared";
 import crypto from "crypto";
 
 @Injectable()

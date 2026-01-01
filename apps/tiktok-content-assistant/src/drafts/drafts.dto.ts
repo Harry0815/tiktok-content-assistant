@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { FullDraftSchema } from "@tca/shared";
+import { FullDraftSchema } from "@tca-shared";
 
 export const CreateDraftSchema = z.object({
   brandId: z.string().min(1),
