@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tca-shared": ["libs/shared/src/index.ts"]
+      "@tca-shared": ["libs/shared/src/index.ts"],
+      "backend-feature-login": ["libs/backend-feature-login/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

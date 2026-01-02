@@ -7,7 +7,9 @@ import { CreateBrandSchema, type CreateBrandDto } from "./brands.dto";
 @Controller("brands")
 @UseGuards(JwtAuthGuard)
 export class BrandsController {
-  constructor(private brands: BrandsService) {}
+  constructor(private brands: BrandsService) {
+    console.log("BrandsService injected?", !!brands, brands);
+  }
 
   @Get()
   list() {
